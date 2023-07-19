@@ -11,10 +11,11 @@ exports.create = (req, res) => {
         name: req.body.name,
         description: req.body.description,
         price: req.body.price,
-        weight: req.body.weight,
-        quantity: req.body.quantity,
+        category: req.body.category,
+        nutrition:req.body.nutrition,
         picName: req.body.picName,
-        category: req.body.category
+        quantity: req.body.quantity,
+        weight: req.body.weight
     });
 
     Products

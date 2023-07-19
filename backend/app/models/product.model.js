@@ -5,10 +5,11 @@ module.exports = mongoose => {
             name: String,
             description: String,
             price: Number,
-            weight: Number,
-            quantity: Number,
+            category: String,
+            nutrition: String,
             picName: String,
-            category: String
+            quantity: Number,
+            weight: String
         },
     );
 
