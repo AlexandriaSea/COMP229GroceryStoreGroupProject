@@ -6,8 +6,8 @@ module.exports = mongoose => {
             description: String,
             price: Number,
             category: String,
-            nutrition: String,
-            picName: String,
+            nutrition_facts: String,
+            pic_name: String,
             quantity: Number,
             weight: String
         },
