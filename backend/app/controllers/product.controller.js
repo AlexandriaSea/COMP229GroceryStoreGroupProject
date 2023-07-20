@@ -12,10 +12,10 @@ exports.create = (req, res) => {
         description: req.body.description,
         price: req.body.price,
         category: req.body.category,
-        nutrition_facts:req.body.nutrition_facts,
         pic_name: req.body.pic_name,
         quantity: req.body.quantity,
-        weight: req.body.weight
+        weight: req.body.weight,
+        nutrition_fact: req.body.nutrition_fact
     });
 
     Products
@@ -34,7 +34,17 @@ exports.create = (req, res) => {
 
 exports.findAll = (req, res) => {
     const name = req.query.name;
-    var condition = name ? { name: { $regex: new RegExp(name), $options: "i" } } : {};
+    const category = req.query.category;
+
+    const condition = {};
+
+    if (name) {
+        condition.name = { $regex: new RegExp(name), $options: "i" };
+    }
+
+    if (category) {
+        condition.category = category;
+    }
 
     Products.find(condition)
         .then(data => {
@@ -80,7 +90,7 @@ exports.update = (req, res) => {
                 res.status(404).send({
                     message: `Cannot update Product with id=${id}. Maybe Product was not found!`
                 });
-            } 
+            }
             else res.send({ message: "Product was updated successfully." });
         })
         .catch(err => {
