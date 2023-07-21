@@ -15,6 +15,7 @@ export class ProductsListComponent implements OnInit {
   currentProduct: Product = {};
   currentIndex = -1;
   name = '';
+  category = '';
 
   constructor(private productService: ProductService) { }
 
@@ -60,6 +61,20 @@ export class ProductsListComponent implements OnInit {
     this.currentIndex = -1;
 
     this.productService.findByName(this.name)
+      .subscribe({
+        next: (data: Product[] | undefined) => {
+          this.products = data;
+          console.log(data);
+        },
+        error: (e: any) => console.error(e)
+      });
+  }
+
+  searchCategory(): void {
+    this.currentProduct = {};
+    this.currentIndex = -1;
+
+    this.productService.findByCategory(this.category)
       .subscribe({
         next: (data: Product[] | undefined) => {
           this.products = data;
