@@ -12,7 +12,7 @@ import { CategoryService } from 'src/app/services/category.service';
 export class AddProductComponent implements OnInit {
   product: Product = {
     name: '',
-    pic_name:'',
+    pic_name: '',
     description: '',
     price: 0,
     quantity: 0,
@@ -36,12 +36,12 @@ export class AddProductComponent implements OnInit {
   saveProduct(): void {
     const data = {
       name: this.product.name,
-      picture:this.product.pic_name,
+      picture: this.product.pic_name,
       description: this.product.description,
       price: this.product.price,
-      quantity:this.product.quantity,
-      weight:this.product.weight,
-      nutrition_fact:this.product.nutrition_fact,
+      quantity: this.product.quantity,
+      weight: this.product.weight,
+      nutrition_fact: this.product.nutrition_fact,
       category: this.product.category
     };
 
@@ -59,7 +59,7 @@ export class AddProductComponent implements OnInit {
     this.submitted = false;
     this.product = {
       name: '',
-      pic_name:'',
+      pic_name: '',
       description: '',
       price: 0,
       quantity: 0,

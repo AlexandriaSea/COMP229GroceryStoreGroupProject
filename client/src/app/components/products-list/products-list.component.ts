@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Category } from 'src/app/models/category.model';
 import { Product } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
-
+import { CategoryService } from 'src/app/services/category.service';
 
 
 @Component({
@@ -12,15 +13,19 @@ import { ProductService } from 'src/app/services/product.service';
 export class ProductsListComponent implements OnInit {
 
   products?: Product[];
+  categories: Category[] = []
   currentProduct: Product = {};
   currentIndex = -1;
   name = '';
   category = '';
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private categoryService: CategoryService) { }
 
   ngOnInit(): void {
     this.retrieveProducts();
+    this.categoryService.getAll().subscribe(categories => {
+      this.categories = categories;
+    });
   }
 
   retrieveProducts(): void {
