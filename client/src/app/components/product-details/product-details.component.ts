@@ -41,6 +41,24 @@ export class ProductDetailsComponent implements OnInit {
       this.message = '';
       this.getProduct(this.route.snapshot.params["id"]);
     }
+    this.isLoggedIn = this.storageService.isLoggedIn();
+    if (this.isLoggedIn) {
+
+      const user = this.storageService.getUser();
+
+      this.roles = user.roles;
+
+ 
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+
+      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+
+ 
+
+      //this.username = user.username;
+
+    }
   }
 
 
