@@ -17,11 +17,11 @@ export class ProductsListByCategoryComponent implements OnInit {
   products?: Product[];
   categories: Category[] = []
   currentProduct: Product = {};
-  currentCategory : Category = {};
+  currentCategory: Category = {};
 
   currentIndex = -1;
   name = '';
-  category : any;
+  category: any;
 
 
   constructor(private productService: ProductService,
@@ -31,26 +31,25 @@ export class ProductsListByCategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.productService.findByCategory(this.category)
-    .subscribe({
-      next: (data: Product[] | undefined) => {
-        this.products = data;
-        console.log(data);
-      },
-      error: (e: any) => console.error(e)
-    });  }
-
-  retrieveProducts(): void {
-    this.productService.getAll()
       .subscribe({
-        next: (data) => {
+        next: (data: Product[] | undefined) => {
           this.products = data;
           console.log(data);
         },
-        error: (e) => console.error(e)
+        error: (e: any) => console.error(e)
       });
   }
 
- 
+  retrieveProducts(): void {
+    this.productService.findByCategory(this.category)
+      .subscribe({
+        next: (data: Product[] | undefined) => {
+          this.products = data;
+          console.log(data);
+        },
+        error: (e: any) => console.error(e)
+      });
+  }
 
   refreshList(): void {
     this.retrieveProducts();
@@ -61,22 +60,22 @@ export class ProductsListByCategoryComponent implements OnInit {
   setActiveProduct(product: Product, index: number): void {
     this.currentProduct = product;
     this.currentIndex = index;
-  
-    this.router.navigate(['/products/'+this.currentProduct.id]);
+
+    this.router.navigate(['/products/' + this.currentProduct.id]);
 
   }
   setActiveCategory(category: any, index: number): void {
     this.currentCategory = category;
     this.currentIndex = index;
-  
+
     this.productService.findByCategory(this.category)
-    .subscribe({
-      next: (data: Product[] | undefined) => {
-        this.products = data;
-        console.log(data);
-      },
-      error: (e: any) => console.error(e)
-    });
+      .subscribe({
+        next: (data: Product[] | undefined) => {
+          this.products = data;
+          console.log(data);
+        },
+        error: (e: any) => console.error(e)
+      });
   }
   removeAllProducts(): void {
     this.productService.deleteAll()
@@ -93,14 +92,25 @@ export class ProductsListByCategoryComponent implements OnInit {
     this.currentProduct = {};
     this.currentIndex = -1;
 
-    this.productService.findByName(this.name)
-      .subscribe({
-        next: (data: Product[] | undefined) => {
-          this.products = data;
-          console.log(data);
-        },
-        error: (e: any) => console.error(e)
-      });
+    if (this.name == '') {
+      this.productService.findByCategory(this.category)
+        .subscribe({
+          next: (data: Product[] | undefined) => {
+            this.products = data;
+            console.log(data);
+          },
+          error: (e: any) => console.error(e)
+        });
+    } else {
+      this.productService.findByName(this.name)
+        .subscribe({
+          next: (data: Product[] | undefined) => {
+            this.products = data;
+            console.log(data);
+          },
+          error: (e: any) => console.error(e)
+        });
+    }
   }
 
   searchCategory(): void {

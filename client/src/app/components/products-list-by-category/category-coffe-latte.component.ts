@@ -58,14 +58,14 @@ export class CoffeLatteCategoryComponent implements OnInit {
   }
 
   retrieveProducts(): void {
-    this.productService.getAll()
-      .subscribe({
-        next: (data) => {
-          this.products = data;
-          console.log(data);
-        },
-        error: (e) => console.error(e)
-      });
+    this.productService.findByCategory("Coffee and Lattes")
+    .subscribe({
+      next: (data: Product[] | undefined) => {
+        this.products = data;
+        console.log(data);
+      },
+      error: (e: any) => console.error(e)
+    });
   }
 
   refreshList(): void {
@@ -109,14 +109,25 @@ export class CoffeLatteCategoryComponent implements OnInit {
     this.currentProduct = {};
     this.currentIndex = -1;
 
-    this.productService.findByName(this.name)
-      .subscribe({
-        next: (data: Product[] | undefined) => {
-          this.products = data;
-          console.log(data);
-        },
-        error: (e: any) => console.error(e)
-      });
+    if (this.name == '') {
+      this.productService.findByCategory("Coffee and Lattes")
+        .subscribe({
+          next: (data: Product[] | undefined) => {
+            this.products = data;
+            console.log(data);
+          },
+          error: (e: any) => console.error(e)
+        });
+    } else {
+      this.productService.findByName(this.name)
+        .subscribe({
+          next: (data: Product[] | undefined) => {
+            this.products = data;
+            console.log(data);
+          },
+          error: (e: any) => console.error(e)
+        });
+    }
   }
 
   searchCategory(): void {
