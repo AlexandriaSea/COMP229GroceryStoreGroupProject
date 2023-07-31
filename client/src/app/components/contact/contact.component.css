@@ -41,4 +41,19 @@
   input[type=submit]:hover {
     background-color: #363199;
   }
+
+  .btn-outline-secondary{
+    color: #ffffff;
+    padding: 0.4rem;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-radius: 8px;
+    font-weight: 400;
+    display: block;
+    width: 30%;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: linear-gradient(to bottom left, #EF8D9C 40%, #FFC39E 100%);
+    position:relative;
+  }
   
