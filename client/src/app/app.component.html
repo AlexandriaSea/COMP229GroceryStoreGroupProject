@@ -1,5 +1,5 @@
 <div>
-    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <nav class="navbar navbar-expand-sm navbar-dark ">
         <div class="container-fluid">
             <a href="#" class="navbar-brand">GroceryStore</a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -20,7 +20,7 @@
                             </button>
                         </div>
                    </li>
-                   <li class="nav-item">
+                   <li class="nav-item" *ngIf="showModeratorBoard || showAdminBoard">
                         <a routerLink="contact" class="nav-link">FeedBack</a>
                     </li>
                     <li class="nav-item" *ngIf="showModeratorBoard || showAdminBoard">
@@ -41,7 +41,7 @@
                         <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
 
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="!isLoggedIn">
                         <a href="/login" class="nav-link" routerLink="login">Login</a>
                     </li>
                 </ul>
@@ -49,18 +49,19 @@
                     <li class="nav-item">
                         <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="isLoggedIn">
                         <a href="/welcome" class="nav-link" (click)="logout()">LogOut</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-
+<!--
     <div class="container mt-3">
         <img class="responsive" src="assets/img/banner-horizon.png" />
     </div>
-    <div class="container mt-3">
+-->
+    <div class="container mt-4" >
         <!--<app-products-list-by-category [selectedCategory]="currentCategory" [display]="false"></app-products-list-by-category>-->
         <router-outlet></router-outlet>
     </div>
