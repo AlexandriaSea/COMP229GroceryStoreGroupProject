@@ -9,14 +9,9 @@
   box-sizing: border-box;
 }
 
-.input-group {
-  width: 65%;
-  margin-top: 6%;
-}
-.container{
-  margin-top: 5% ;
-  margin-bottom: 5%;
-
+.main{
+  max-width: auto;
+  margin: 0 auto;
 }
 
 h1 {
@@ -31,10 +26,6 @@ img {
   vertical-align: middle;
 }
 
-.banner-vertical{
-margin-top: 7%;
-
-}
 .card_btn {
   color: #ffffff;
   padding: 0.8rem;
@@ -51,18 +42,13 @@ margin-top: 7%;
 }
 
 .btn-outline-secondary{
-  color: #ffffff;
-  padding: 0.4rem;
+  
+  color: #6e3e3e;
   font-size: 14px;
-  text-transform: uppercase;
-  border-radius: 8px;
+  border-radius: 4px;
   font-weight: 400;
-  display: block;
-  width: 30%;
-  cursor: pointer;
+  width: 100%;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  background: linear-gradient(to bottom left, #EF8D9C 40%, #FFC39E 100%);
-  position:relative;
 }
 
 .btn:hover {
@@ -75,11 +61,11 @@ margin-top: 7%;
   flex-wrap: wrap;
   list-style: none;
   margin: 0;
-  padding: 100;
+  padding: 0;
 }
 
 .cards_item {
-  
+
   display: flex;
   padding: 1rem;
 }
@@ -90,7 +76,11 @@ margin-top: 7%;
   }
 }
 
-
+@media (min-width: 56rem) {
+  .cards_item {
+    width: 33%;
+  }
+}
 
 .card {
   background-color: white;

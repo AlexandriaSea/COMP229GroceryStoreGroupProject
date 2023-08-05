@@ -1,7 +1,4 @@
-
-
-
-<div class="container" >
+<div class="container">
   <div class="row">
       <div class="col-md-4">
         
@@ -28,8 +25,10 @@
               <div class="card_content">
                 <h2 class="card_title">{{ product.name }}</h2>
                 <p class="card_text">CAD $ {{ product.price}}</p>
-                <button class="btn card_btn" [class.active]="i == currentIndex" (click)="setActiveProduct(product, i)">
+                <button *ngIf="!showModeratorBoard && !showAdminBoard" class="btn card_btn" [class.active]="i == currentIndex" (click)="setActiveProduct(product, i)">
                   Read More</button>
+                <button *ngIf="showModeratorBoard || showAdminBoard" class="btn card_btn" [class.active]="i == currentIndex" (click)="setActiveProduct(product, i)">
+                    Edit</button>
               </div>
             </div>
           </li>

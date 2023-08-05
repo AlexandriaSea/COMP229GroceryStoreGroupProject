@@ -3,6 +3,7 @@ import { StorageService } from 'src/app/_services/storage.service';
 import { Category } from 'src/app/models/category.model';
 import { Product } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
 
 
@@ -14,7 +15,7 @@ import { CategoryService } from 'src/app/services/category.service';
 export class ProductsListComponent implements OnInit {
 
   products?: Product[];
-  categories: Category[] = []
+  categories: Category[] = [];
   currentProduct: Product = {};
   currentIndex = -1;
   name = '';
@@ -26,7 +27,11 @@ export class ProductsListComponent implements OnInit {
   showModeratorBoard = false;
   username?: string;
 
-  constructor(private productService: ProductService, private categoryService: CategoryService, private storageService: StorageService,) { }
+  constructor(private productService: ProductService, 
+    private categoryService: CategoryService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private storageService: StorageService) { }
 
   ngOnInit(): void {
     this.retrieveProducts();
@@ -67,6 +72,8 @@ export class ProductsListComponent implements OnInit {
       });
   }
 
+ 
+
   refreshList(): void {
     this.retrieveProducts();
     this.currentProduct = {};
@@ -76,6 +83,9 @@ export class ProductsListComponent implements OnInit {
   setActiveProduct(product: Product, index: number): void {
     this.currentProduct = product;
     this.currentIndex = index;
+  
+    this.router.navigate(['/products/'+this.currentProduct.id]);
+
   }
 
   removeAllProducts(): void {
