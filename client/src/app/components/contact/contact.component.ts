@@ -1,3 +1,5 @@
+
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Contact } from 'src/app/models/contact.model';
@@ -60,7 +62,7 @@ export class ContactComponent implements OnInit {
             email_address: this.contact.email_address,
             message: this.contact.message
         };
-
+    
         this.contactService.create(data)
             .subscribe({
                 next: (res) => {

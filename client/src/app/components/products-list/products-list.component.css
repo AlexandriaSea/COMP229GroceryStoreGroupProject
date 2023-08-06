@@ -25,7 +25,8 @@ h1 {
     text-align: center;
 }
 
-img {
+.img {
+  margin-top: 5%;
   height: auto;
   max-width: 100%;
   vertical-align: middle;
@@ -51,7 +52,6 @@ margin-top: 7%;
 }
 
 .btn-outline-secondary{
-  color: #ffffff;
   padding: 0.4rem;
   font-size: 14px;
   text-transform: uppercase;
@@ -95,7 +95,7 @@ margin-top: 7%;
 .card {
   background-color: white;
   border-radius: 0.25rem;
-  box-shadow: 5px 5px 5px 5px rgba(226, 215, 215, 0.993);
+  box-shadow: 2px 2px 2px 2px rgb(250, 248, 248);
   display: flex;
   flex-direction: column;
   overflow: hidden;
